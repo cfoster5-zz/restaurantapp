@@ -7,9 +7,13 @@
 </ion-header>
 
 <ion-content>
+  <ion-item>
+    <ion-label>Dark Mode</ion-label>
+    <ion-toggle color="dark" [(ngModel)]="dark"></ion-toggle>
+  </ion-item>
   <ion-searchbar (ionInput)="getRestaurants($event)"></ion-searchbar>
   <ion-list>
-    <ion-item *ngFor="let restaurant of restaurants">
+    <ion-item *ngFor="let restaurant of restaurants" [ngClass]="{'dark':dark == true}">
       <!-- for loop repeats over and over until no items are left -->
       <!-- Like saying output of array name -->
       {{ restaurant }}
