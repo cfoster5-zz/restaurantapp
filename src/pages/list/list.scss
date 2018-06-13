@@ -3,6 +3,19 @@ page-list {
   .dark{
     background-color: #262626;
     color: white;
+    .toolbar-title-ios{
+      color: white;
+    }
+    .toggle-ios .toggle-icon{
+      background-color: #cccccc;
+    }
+    .searchbar-input{
+      background-color: #cccccc;
+    }
+    ion-item { // REVIEW: ADDED AFTER REMOVING INDIVIDUAL NGCLASSes
+      background-color: #262626;
+      color: white;
+    }
   }
 
 }
