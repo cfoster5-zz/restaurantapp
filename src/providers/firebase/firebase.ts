@@ -5,20 +5,20 @@ import * as firebase from 'firebase/app';
 @Injectable()
 export class FirebaseProvider {
 
-  constructor(public db: AngularFireDatabase,) {
+  constructor(public db: AngularFireDatabase) {
     console.log('Hello FirebaseProvider Provider');
   }
 
   getList(): FirebaseListObservable<any> {
     return this.db.list('list', {
       query: {
-        // orderByChild:'order',
+        orderByChild:'order',
       }
     });
   }
 
-  addRestaurant(restaurantName){
-    firebase.database().ref('list').push(restaurantName);
+  addRestaurant(restaurantName) {
+    firebase.database().ref('list').push({ name: restaurantName });
   }
 
 }

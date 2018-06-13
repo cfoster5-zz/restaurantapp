@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, reorderArray } from 'ionic-angular';
 import { FirebaseProvider } from '../../providers/firebase/firebase';
 
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database-deprecated';
@@ -25,10 +25,22 @@ export class WishlistPage {
     console.log('ionViewDidLoad WishlistPage');
   }
 
-  addRestaurant(){
+  addRestaurant() {
     console.log(this.restaurantName)
     this.firebase.addRestaurant(this.restaurantName)
     this.restaurantName = ""
+  }
+
+  reorderItems(event) {
+    // console.log(event)
+    this.restaurantList = reorderArray(this.restaurantList, event);
+    let updatedList = this.restaurantList
+    for (let i = 0; i < updatedList.length; i++) {
+      var customData = {
+        order: i
+      };
+      firebase.database().ref('list/' + updatedList[i].$key).update(customData)
+    }
   }
 
 }
